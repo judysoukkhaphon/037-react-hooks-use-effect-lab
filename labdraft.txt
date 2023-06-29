@@ -1,0 +1,29 @@
+Provided code has "Question" component already set up to recieve all the props that it needs.
+
+use "useEffect" hook to create a countdown timer giving the user 10 seconds to answer each question.
+
+"useEffect" should use "setTimeout"
+"setTimeout" should have a callback function that calls  "setTimeRemaining" to decrease the amount of time remaining by 1 second every second. (setTimeRemaining isn't necessarily the callback itself)
+
+SYNTAX:
+    setTimeout(callback, millisends)
+    (calls the callback function after time in milliseconds)
+
+when timeRemaining = 0, 
+    then reset the timer with setTimeReamining(10).
+    call the prop "onAnswered()" and pass it a value of "false".
+
+Run a cleanup function so useEffect doesn't keep running. 
+
+API:
+    The cleanup function is the function returned by useEffect()'s callback function.
+
+LOGIC:
+    Since setTimeout() is a library function, I can not write a return statement for it, so I can't directly make useEffect's callback function setTimeout(). 
+    I'll have to write a callback function that then calls setTimeout(), and returns the cleanup function.
+
+
+
+
+
+
