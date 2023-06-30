@@ -21,28 +21,44 @@ function Question({ question, onAnswered }) {
   , [timeRemaining]);
   */
 
+  /*
   const [isMounted, setIsMounted] = useState(true);
 
+  
   function cleanup(time) {
-    clearTimeout(time);
-    if(time === 0){
     //clearTimeout(time);
+    if(timeRemaining === 0){
+    //clearTimeout(timeRemaining);
     setTimeRemaining(()=>10);
     onAnswered(false);
     }
     if(!question){
+      clearTimeout(timeRemaining);
       setIsMounted(false);
     }
+    clearTimeout(time);
     return isMounted;
   }
+  */
 
   useEffect((()=>{
-    setTimeout(()=>{
+    const timer = setTimeout(()=>{
       setTimeRemaining(
         (x)=> x = timeRemaining - 1)}
     , 1000)
-  return cleanup(timeRemaining)})
-  , [timeRemaining, question]);
+
+    if(timeRemaining === 0){
+      setTimeRemaining(()=>10);
+      onAnswered(false);
+      }
+
+  return () => {
+      //if(!question){
+        //console.log("null question");
+        clearTimeout(timer);
+      //}
+  }})
+  , [timeRemaining, question, onAnswered]);
 
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
